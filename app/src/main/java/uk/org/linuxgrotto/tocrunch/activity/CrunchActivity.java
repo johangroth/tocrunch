@@ -10,8 +10,8 @@ import android.widget.ListView;
 import org.springframework.social.connect.ConnectionRepository;
 
 import uk.org.linuxgrotto.tocrunch.R;
-import uk.org.linuxgrotto.tocrunch.oauth.Crunch;
-import uk.org.linuxgrotto.tocrunch.oauth.CrunchConnectionFactory;
+import uk.org.linuxgrotto.tocrunch.api.Crunch;
+import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
 
 public class CrunchActivity extends AbstractAsyncActivity {
 

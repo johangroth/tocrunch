@@ -3,7 +3,6 @@ package uk.org.linuxgrotto.tocrunch.activity;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 
-import uk.org.linuxgrotto.tocrunch.oauth.AsyncActivity;
 import uk.org.linuxgrotto.tocrunch.oauth.MainApplication;
 
 /**

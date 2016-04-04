@@ -9,13 +9,21 @@ import org.springframework.social.connect.sqlite.SQLiteConnectionRepository;
 import org.springframework.social.connect.sqlite.support.SQLiteConnectionRepositoryHelper;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 
+import uk.org.linuxgrotto.tocrunch.api.Crunch;
+import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
+
 /**
  * Created by jgroth on 04/04/16.
  */
 public class MainApplication extends Application {
+
     private ConnectionFactoryRegistry connectionFactoryRegistry;
+
     private SQLiteOpenHelper repositoryHelper;
+
     private ConnectionRepository connectionRepository;
+
+    private CrunchOAuthUrls oAuthUrls = new OAuthSandbox();
 
     // ***************************************
     // Application Methods
@@ -24,36 +32,41 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // create a new ConnectionFactoryLocator and populate it with a Crunch ConnectionFactory
-        this.connectionFactoryRegistry = new ConnectionFactoryRegistry();
-        this.connectionFactoryRegistry.addConnectionFactory(new CrunchConnectionFactory(getCrunchConsumerToken(),
-                getCrunchConsumerTokenSecret()));
+        connectionFactoryRegistry = new ConnectionFactoryRegistry();
+        connectionFactoryRegistry.addConnectionFactory(new CrunchConnectionFactory(getCrunchConsumerToken(),
+                getCrunchConsumerTokenSecret(), oAuthUrls));
 
         // set up the database and encryption
-        this.repositoryHelper = new SQLiteConnectionRepositoryHelper(this);
-        this.connectionRepository = new SQLiteConnectionRepository(this.repositoryHelper,
-                this.connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
-    }
-
-    // ***************************************
-    // Private methods
-    // ***************************************
-    private String getCrunchConsumerToken() {
-        return OAuthSandbox.CONSUMER_KEY;
-    }
-
-    private String getCrunchConsumerTokenSecret() {
-        return OAuthSandbox.SHARED_SECRET;
+        repositoryHelper = new SQLiteConnectionRepositoryHelper(this);
+        connectionRepository = new SQLiteConnectionRepository(repositoryHelper,
+                connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
     }
 
     // ***************************************
     // Public methods
     // ***************************************
     public ConnectionRepository getConnectionRepository() {
-        return this.connectionRepository;
+        return connectionRepository;
     }
 
     public CrunchConnectionFactory getCrunchConnectionFactory() {
-        return (CrunchConnectionFactory) this.connectionFactoryRegistry.getConnectionFactory(Crunch.class);
+        return (CrunchConnectionFactory) connectionFactoryRegistry.getConnectionFactory(Crunch.class);
     }
+
+    public CrunchOAuthUrls getCrunchOAuthUrls() {
+        return oAuthUrls;
+    }
+
+    // ***************************************
+    // Private methods
+    // ***************************************
+    private String getCrunchConsumerToken() {
+        return oAuthUrls.getConsumerKey();
+    }
+
+    private String getCrunchConsumerTokenSecret() {
+        return oAuthUrls.getSharedSecret();
+    }
+
 
 }

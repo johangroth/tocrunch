@@ -1,8 +1,10 @@
-package uk.org.linuxgrotto.tocrunch.oauth;
+package uk.org.linuxgrotto.tocrunch.connect;
 
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;
+
+import uk.org.linuxgrotto.tocrunch.api.Crunch;
 
 /**
  * Created by jgroth on 04/04/16.

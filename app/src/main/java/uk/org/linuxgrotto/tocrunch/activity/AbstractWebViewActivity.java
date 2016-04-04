@@ -9,7 +9,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 import uk.org.linuxgrotto.tocrunch.R;
-import uk.org.linuxgrotto.tocrunch.oauth.AsyncActivity;
 import uk.org.linuxgrotto.tocrunch.oauth.MainApplication;
 
 /**

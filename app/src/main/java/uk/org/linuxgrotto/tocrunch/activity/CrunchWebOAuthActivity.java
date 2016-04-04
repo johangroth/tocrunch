@@ -15,9 +15,8 @@ import org.springframework.social.oauth1.AuthorizedRequestToken;
 import org.springframework.social.oauth1.OAuth1Parameters;
 import org.springframework.social.oauth1.OAuthToken;
 
-import uk.org.linuxgrotto.tocrunch.oauth.Crunch;
-import uk.org.linuxgrotto.tocrunch.oauth.CrunchConnectionFactory;
-import uk.org.linuxgrotto.tocrunch.oauth.OAuthSandbox;
+import uk.org.linuxgrotto.tocrunch.api.Crunch;
+import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
 
 /**
  * Created by jgroth on 04/04/16.
@@ -65,7 +64,7 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
     // Private methods
     // ***************************************
     private String getOAuthCallbackUrl() {
-        return OAuthSandbox.getCallbackUrl();
+        return getApplicationContext().getCrunchOAuthUrls().getCallbackUrl();
     }
 
     private void displayCrunchAuthorization(OAuthToken requestToken) {
