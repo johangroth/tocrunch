@@ -25,22 +25,22 @@ public class SalesInvoiceTemplate implements SalesInvoiceOperations {
     }
 
     @Override
-    public SalesInvoice getSalesInvoice(String salesInvoiceId) {
-        return null;
-    }
-
-    @Override
-    public SalesInvoice getSalesInvoiceDocument(String salesInvoiceId) {
-        return null;
-    }
-
-    @Override
     public SalesInvoice addSalesInvoice(SalesInvoice salesInvoice) {
         return null;
     }
 
     @Override
-    public SalesInvoice updateSalesInvoice(String salesInvoiceId, SalesInvoice salesInvoice) {
+    public SalesInvoice getSalesInvoice(Long id) {
+        return null;
+    }
+
+    @Override
+    public SalesInvoice updateSalesInvoice(Long id, SalesInvoice salesInvoice) {
+        return null;
+    }
+
+    @Override
+    public SalesInvoice getSalesInvoiceDocument(Long id) {
         return null;
     }
 

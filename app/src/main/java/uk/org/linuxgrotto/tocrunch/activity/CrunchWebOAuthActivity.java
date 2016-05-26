@@ -8,12 +8,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.DuplicateConnectionException;
 import org.springframework.social.oauth1.AuthorizedRequestToken;
 import org.springframework.social.oauth1.OAuth1Parameters;
 import org.springframework.social.oauth1.OAuthToken;
+
+import java.util.Collections;
 
 import uk.org.linuxgrotto.tocrunch.api.Crunch;
 import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
@@ -67,13 +71,16 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
         return getApplicationContext().getCrunchOAuthUrls().getCallbackUrl();
     }
 
+    private String getRequestTokenUrl() {
+        return getApplicationContext().getCrunchOAuthUrls().getRequestTokenEndpoint();
+    }
+
     private void displayCrunchAuthorization(OAuthToken requestToken) {
         // save for later use
         saveRequestToken(requestToken);
 
         // Generate the Crunch authorization URL to be used in the browser or web view
-        String authUrl = this.connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(),
-                OAuth1Parameters.NONE);
+        String authUrl = this.connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), OAuth1Parameters.NONE);
 
         // display the crunch authorization screen
         getWebView().loadUrl(authUrl);
@@ -115,8 +122,12 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
 
         @Override
         protected OAuthToken doInBackground(Void... params) {
-            // Fetch a one time use Request Token from Twitter
-            return connectionFactory.getOAuthOperations().fetchRequestToken(getOAuthCallbackUrl(), null);
+            // Fetch a one time use Request Token from Crunch App
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.TEXT_PLAIN);
+            headers.setAccept(Collections.singletonList(MediaType.ALL));
+
+            return connectionFactory.getOAuthOperations().fetchRequestToken(getOAuthCallbackUrl(), headers);
         }
 
         @Override
@@ -148,8 +159,7 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
             AuthorizedRequestToken authorizedRequestToken = new AuthorizedRequestToken(requestToken, verifier);
 
             // Exchange the Authorized Request Token for the Access Token
-            OAuthToken accessToken = connectionFactory.getOAuthOperations().exchangeForAccessToken(
-                    authorizedRequestToken, null);
+            OAuthToken accessToken = connectionFactory.getOAuthOperations().exchangeForAccessToken(authorizedRequestToken, null);
 
             deleteRequestToken();
 

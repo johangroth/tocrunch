@@ -75,7 +75,7 @@ public class AbstractWebViewActivity extends AppCompatActivity implements AsyncA
         }
 
         this.progressDialog.setMessage(message);
-        this.progressDialog.show();
+        // this.progressDialog.show();
     }
 
     public void dismissProgressDialog() {

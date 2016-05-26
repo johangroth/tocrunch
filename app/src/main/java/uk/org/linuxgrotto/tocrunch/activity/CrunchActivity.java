@@ -2,6 +2,7 @@ package uk.org.linuxgrotto.tocrunch.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,7 @@ public class CrunchActivity extends AbstractAsyncActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate invoked");
         setContentView(R.layout.activity_crunch);
         connectionFactory = getApplicationContext().getCrunchConnectionFactory();
         connectionRepository = getApplicationContext().getConnectionRepository();
@@ -32,6 +34,7 @@ public class CrunchActivity extends AbstractAsyncActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.i(TAG, "onStart invoked");
         if (!isConnected()) {
             showConnectOptions();
         }
