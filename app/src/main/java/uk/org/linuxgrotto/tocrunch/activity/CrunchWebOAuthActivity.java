@@ -8,16 +8,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.DuplicateConnectionException;
 import org.springframework.social.oauth1.AuthorizedRequestToken;
 import org.springframework.social.oauth1.OAuth1Parameters;
 import org.springframework.social.oauth1.OAuthToken;
-
-import java.util.Collections;
 
 import uk.org.linuxgrotto.tocrunch.api.Crunch;
 import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
@@ -71,10 +67,6 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
         return getApplicationContext().getCrunchOAuthUrls().getCallbackUrl();
     }
 
-    private String getRequestTokenUrl() {
-        return getApplicationContext().getCrunchOAuthUrls().getRequestTokenEndpoint();
-    }
-
     private void displayCrunchAuthorization(OAuthToken requestToken) {
         // save for later use
         saveRequestToken(requestToken);
@@ -123,11 +115,7 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
         @Override
         protected OAuthToken doInBackground(Void... params) {
             // Fetch a one time use Request Token from Crunch App
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.TEXT_PLAIN);
-            headers.setAccept(Collections.singletonList(MediaType.ALL));
-
-            return connectionFactory.getOAuthOperations().fetchRequestToken(getOAuthCallbackUrl(), headers);
+            return connectionFactory.getOAuthOperations().fetchRequestToken(getOAuthCallbackUrl(), null);
         }
 
         @Override
