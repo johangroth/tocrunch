@@ -1,0 +1,29 @@
+# editorconfig.org
+#
+# For enforcing consistent indentation styles between different
+# development environments at Crunch
+#
+# IntelliJ IDEA has .editorconfig support built in; Eclipse users
+# will need to install the EditorConfig plugin
+# (https://marketplace.eclipse.org/content/editorconfig-eclipse)
+#
+
+root = true
+
+# settings for all files
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Java settings
+[*.java]
+# Spaces are preferred since source files display the same
+# in each editor, and 4 spaces seems to be the typical size
+indent_style = space
+indent_size = 4
+
+[*.{html,xhtml,xml,ftl,css}]
+indent_style = space
+indent_size = 2
+

@@ -24,15 +24,14 @@
 
     <activity
       android:name=".activity.CrunchWebOAuthActivity"
-      android:excludeFromRecents="true"
       android:noHistory="true">
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
 
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <!--android:host="authorise"-->
-        <data android:scheme="too_crunch" />
+
+        <data android:scheme="too_crunch" android:host="authorise"/>
       </intent-filter>
     </activity>
   </application>

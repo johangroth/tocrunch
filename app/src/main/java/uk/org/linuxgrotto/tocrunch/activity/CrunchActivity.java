@@ -27,8 +27,8 @@ public class CrunchActivity extends AbstractAsyncActivity {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "onCreate invoked");
         setContentView(R.layout.activity_crunch);
-        connectionFactory = getApplicationContext().getCrunchConnectionFactory();
         connectionRepository = getApplicationContext().getConnectionRepository();
+        connectionFactory = getApplicationContext().getCrunchConnectionFactory();
     }
 
     @Override

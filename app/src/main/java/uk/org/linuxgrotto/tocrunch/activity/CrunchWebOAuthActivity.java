@@ -60,6 +60,18 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "in onResume");
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        Log.i(TAG, "in onResumeFragments");
+    }
+
     // ***************************************
     // Private methods
     // ***************************************
@@ -75,7 +87,10 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
         String authUrl = this.connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), OAuth1Parameters.NONE);
 
         // display the crunch authorization screen
-        getWebView().loadUrl(authUrl);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(authUrl));
+        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        startActivity(intent);
+//         getWebView().loadUrl(authUrl);
     }
 
     private void displayCrunchOptions() {
@@ -126,7 +141,7 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
 
     }
 
-    private class CrunchPostConnectTask extends AsyncTask<String, Void, Void> {
+    protected class CrunchPostConnectTask extends AsyncTask<String, Void, Void> {
 
         @Override
         protected void onPreExecute() {
