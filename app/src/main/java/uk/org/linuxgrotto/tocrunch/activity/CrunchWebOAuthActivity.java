@@ -52,7 +52,7 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
             String oauthVerifier = uri.getQueryParameter("oauth_verifier");
 
             if (oauthVerifier != null) {
-                getWebView().clearView();
+//                getWebView().clearView();
                 new CrunchPostConnectTask().execute(oauthVerifier);
             }
         } else {
@@ -60,30 +60,6 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(TAG, "in onResume");
-        Uri uri = getIntent().getData();
-        if (uri != null) {
-            String oauthVerifier = uri.getQueryParameter("oauth_verifier");
-
-            if (oauthVerifier != null) {
-                getWebView().clearView();
-                new CrunchPostConnectTask().execute(oauthVerifier);
-            }
-        }
-    }
-
-    @Override
-    public void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        Uri uri = intent.getData();
-        String oauthVerifier = uri.getQueryParameter("oauth_verifier");
-        String oauthToken = uri.getQueryParameter("oauth_token");
-
-        //...do what you need with the parameters
-    }
 
     // ***************************************
     // Private methods
@@ -104,7 +80,6 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         startActivity(intent);
         finish();
-//         getWebView().loadUrl(authUrl);
     }
 
     private void displayCrunchOptions() {
