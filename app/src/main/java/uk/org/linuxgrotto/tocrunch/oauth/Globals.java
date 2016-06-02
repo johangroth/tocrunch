@@ -8,6 +8,6 @@ public class Globals {
     public static final String REQUEST_TOKEN = "/crunch-core/oauth/request_token";
     public static final String AUTHORIZE = "/crunch-core/login/oauth-login.seam";
     public static final String ACCESS_TOKEN = "/crunch-core/oauth/access_token";
-    public static final String CALLBACK_URL = "too-crunch://authorise";
+    public static final String CALLBACK_URL = "to-crunch://authorise";
 
 }

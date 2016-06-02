@@ -22,6 +22,7 @@ import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
  * Created by jgroth on 04/04/16.
  */
 public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
+    private static final String TAG = CrunchWebOAuthActivity.class.getSimpleName();
 
     private static final String REQUEST_TOKEN_KEY = "request_token";
 

@@ -5,7 +5,7 @@ package uk.org.linuxgrotto.tocrunch.oauth;
  */
 public class OAuthSandbox extends Globals implements CrunchOAuthUrls {
 
-    private static final String CONSUMER_KEY = "too_crunch";
+    private static final String CONSUMER_KEY = "to_crunch";
     private static final String SHARED_SECRET ="c376e7dc-b040-4bdf-82ed-28a32d123f41";
 
     private static final String OAUTH_BASE_URL = "https://demo.crunch.co.uk";

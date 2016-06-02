@@ -31,7 +31,7 @@
 
         <data
           android:host="authorise"
-          android:scheme="too-crunch" />
+          android:scheme="to-crunch" />
 
       </intent-filter>
     </activity>
