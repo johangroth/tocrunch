@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import uk.org.linuxgrotto.tocrunch.R;
 import uk.org.linuxgrotto.tocrunch.oauth.MainApplication;
 
 /**
@@ -34,7 +37,7 @@ public class AbstractWebViewActivity extends AppCompatActivity implements AsyncA
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*getWindow().requestFeature(Window.FEATURE_PROGRESS);
+        getWindow().requestFeature(Window.FEATURE_PROGRESS);
         getWindow().setFeatureInt(Window.FEATURE_PROGRESS, Window.PROGRESS_VISIBILITY_ON);
         this.webView = new WebView(this);
         setContentView(this.webView);
@@ -48,7 +51,7 @@ public class AbstractWebViewActivity extends AppCompatActivity implements AsyncA
                     activity.setTitle(R.string.app_name);
                 }
             }
-        });*/
+        });
     }
 
     // ***************************************

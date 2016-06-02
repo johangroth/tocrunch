@@ -52,7 +52,7 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
             String oauthVerifier = uri.getQueryParameter("oauth_verifier");
 
             if (oauthVerifier != null) {
-//                getWebView().clearView();
+                getWebView().clearView();
                 new CrunchPostConnectTask().execute(oauthVerifier);
             }
         } else {
