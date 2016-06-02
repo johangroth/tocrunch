@@ -4,22 +4,28 @@ import org.springframework.web.client.RestTemplate;
 
 import uk.org.linuxgrotto.tocrunch.api.CurrentUserOperations;
 import uk.org.linuxgrotto.tocrunch.api.model.Director;
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
 /**
  * Created by jgroth on 04/04/16.
  */
-public class CurrentUserTemplate implements CurrentUserOperations {
+public class CurrentUserTemplate extends AbstractCrunchOperations implements CurrentUserOperations {
 
-    private boolean authorised;
     private RestTemplate restTemplate;
 
-    public CurrentUserTemplate(RestTemplate restTemplate, boolean authorised) {
+    private CrunchOAuthUrls crunchOAuthUrls;
+
+    private static final String CURRENT_USER = "/current_user";
+
+    public CurrentUserTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
+        super(authorised);
         this.restTemplate = restTemplate;
-        this.authorised = authorised;
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
     @Override
     public Director getCurrentUser() {
-        return null;
+        requireUserAuthorisation();
+        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CURRENT_USER), Director.class);
     }
 }

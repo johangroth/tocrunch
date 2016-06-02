@@ -11,14 +11,17 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  */
 public class CrunchServiceProvider extends AbstractOAuth1ServiceProvider<Crunch> {
 
-    public CrunchServiceProvider(String consumerKey, String consumerSecret, CrunchOAuthUrls apiV2) {
+    private CrunchOAuthUrls crunchOAuthUrls;
+
+    public CrunchServiceProvider(String consumerKey, String consumerSecret, CrunchOAuthUrls crunchOAuthUrls) {
         super(consumerKey, consumerSecret, new ToCrunchOAuth1Template(consumerKey, consumerSecret,
-                apiV2.getRequestTokenEndpoint(),
-                apiV2.getAuthorisationEndpoint(),
-                apiV2.getAccessTokenEndpoint()));
+                crunchOAuthUrls.getRequestTokenEndpoint(),
+                crunchOAuthUrls.getAuthorisationEndpoint(),
+                crunchOAuthUrls.getAccessTokenEndpoint()));
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
     public Crunch getApi(String accessToken, String secret) {
-        return new CrunchTemplate(getConsumerKey(), getConsumerSecret(), accessToken, secret);
+        return new CrunchTemplate(getConsumerKey(), getConsumerSecret(), accessToken, secret, crunchOAuthUrls);
     }
 }

@@ -157,10 +157,16 @@ public class CrunchWebOAuthActivity extends AbstractWebViewActivity {
             deleteRequestToken();
 
             // Persist the connection and Access Token to the repository
-            Connection<Crunch> connection = connectionFactory.createConnection(accessToken);
-
+            Connection<Crunch> connection = null;
             try {
-                connectionRepository.addConnection(connection);
+                connection = connectionFactory.createConnection(accessToken);
+            } catch (Exception e) {
+                Log.e(TAG, "Could not create connection", e);
+            }
+            try {
+                if (connection != null) {
+                    connectionRepository.addConnection(connection);
+                }
             } catch (DuplicateConnectionException e) {
                 Log.e(TAG, "connection already exists in repository!");
                 // connection already exists in repository!

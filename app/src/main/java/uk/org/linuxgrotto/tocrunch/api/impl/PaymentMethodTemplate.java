@@ -4,18 +4,21 @@ import org.springframework.web.client.RestTemplate;
 
 import uk.org.linuxgrotto.tocrunch.api.PaymentMethodOperations;
 import uk.org.linuxgrotto.tocrunch.api.model.PaymentMethod;
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
 /**
  * Created by jgroth on 04/04/16.
  */
-public class PaymentMethodTemplate implements PaymentMethodOperations {
+public class PaymentMethodTemplate extends AbstractCrunchOperations implements PaymentMethodOperations {
 
-    private boolean authorised;
     private RestTemplate restTemplate;
 
-    public PaymentMethodTemplate(RestTemplate restTemplate, boolean authorised) {
+    private CrunchOAuthUrls crunchOAuthUrls;
+
+    public PaymentMethodTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
+        super(authorised);
         this.restTemplate = restTemplate;
-        this.authorised = authorised;
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
     @Override

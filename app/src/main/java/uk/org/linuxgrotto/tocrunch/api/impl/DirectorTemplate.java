@@ -7,18 +7,21 @@ import java.util.Date;
 import uk.org.linuxgrotto.tocrunch.api.DirectorOperations;
 import uk.org.linuxgrotto.tocrunch.api.model.Director;
 import uk.org.linuxgrotto.tocrunch.api.model.Directors;
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
 /**
  * Created by jgroth on 04/04/16.
  */
-public class DirectorTemplate implements DirectorOperations {
+public class DirectorTemplate extends AbstractCrunchOperations implements DirectorOperations {
 
-    private boolean authorised;
     private RestTemplate restTemplate;
 
-    public DirectorTemplate(RestTemplate restTemplate, boolean authorised) {
+    private CrunchOAuthUrls crunchOAuthUrls;
+
+    public DirectorTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
+        super(authorised);
         this.restTemplate = restTemplate;
-        this.authorised = authorised;
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
     @Override

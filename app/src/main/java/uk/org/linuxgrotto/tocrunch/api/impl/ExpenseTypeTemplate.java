@@ -4,18 +4,21 @@ import org.springframework.web.client.RestTemplate;
 
 import uk.org.linuxgrotto.tocrunch.api.ExpenseTypeOperations;
 import uk.org.linuxgrotto.tocrunch.api.model.ExpenseTypes;
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
 /**
  * Created by jgroth on 04/04/16.
  */
-public class ExpenseTypeTemplate implements ExpenseTypeOperations {
+public class ExpenseTypeTemplate extends AbstractCrunchOperations implements ExpenseTypeOperations {
 
-    private boolean authorised;
     private RestTemplate restTemplate;
 
-    public ExpenseTypeTemplate(RestTemplate restTemplate, boolean authorised) {
+    private CrunchOAuthUrls crunchOAuthUrls;
+
+    public ExpenseTypeTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
+        super(authorised);
         this.restTemplate = restTemplate;
-        this.authorised = authorised;
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
     @Override

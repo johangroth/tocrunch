@@ -13,6 +13,7 @@ import uk.org.linuxgrotto.tocrunch.api.ExpenseTypeOperations;
 import uk.org.linuxgrotto.tocrunch.api.PaymentMethodOperations;
 import uk.org.linuxgrotto.tocrunch.api.SalesInvoiceOperations;
 import uk.org.linuxgrotto.tocrunch.api.SupplierOperations;
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
 /**
  * Created by jgroth on 04/04/16.
@@ -40,9 +41,12 @@ public class CrunchTemplate extends AbstractOAuth1ApiBinding implements Crunch {
 
     private SupplierOperations supplierOperations;
 
-    public CrunchTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
+    private CrunchOAuthUrls crunchOAuthUrls;
+
+    public CrunchTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret, CrunchOAuthUrls crunchOAuthUrls) {
         super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
         init();
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
     @Override
@@ -96,24 +100,24 @@ public class CrunchTemplate extends AbstractOAuth1ApiBinding implements Crunch {
     }
 
     private void init() {
-        accountOperations = new AccountTemplate(getRestTemplate(), isAuthorized());
+        accountOperations = new AccountTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        clientOperations = new ClientTemplate(getRestTemplate(), isAuthorized());
+        clientOperations = new ClientTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        clientPaymentOperations = new ClientPaymentTemplate(getRestTemplate(), isAuthorized());
+        clientPaymentOperations = new ClientPaymentTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        currentUserOperations = new CurrentUserTemplate(getRestTemplate(), isAuthorized());
+        currentUserOperations = new CurrentUserTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        directorOperations = new DirectorTemplate(getRestTemplate(), isAuthorized());
+        directorOperations = new DirectorTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        expenseOperations = new ExpenseTemplate(getRestTemplate(), isAuthorized());
+        expenseOperations = new ExpenseTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        expenseTypeOperations = new ExpenseTypeTemplate(getRestTemplate(), isAuthorized());
+        expenseTypeOperations = new ExpenseTypeTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        paymentMethodOperations = new PaymentMethodTemplate(getRestTemplate(), isAuthorized());
+        paymentMethodOperations = new PaymentMethodTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        salesInvoiceOperations = new SalesInvoiceTemplate(getRestTemplate(), isAuthorized());
+        salesInvoiceOperations = new SalesInvoiceTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        supplierOperations = new SupplierTemplate(getRestTemplate(), isAuthorized());
+        supplierOperations = new SupplierTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
     }
 }

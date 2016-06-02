@@ -5,18 +5,21 @@ import org.springframework.web.client.RestTemplate;
 import uk.org.linuxgrotto.tocrunch.api.SalesInvoiceOperations;
 import uk.org.linuxgrotto.tocrunch.api.model.SalesInvoice;
 import uk.org.linuxgrotto.tocrunch.api.model.SalesInvoices;
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
 /**
  * Created by jgroth on 04/04/16.
  */
-public class SalesInvoiceTemplate implements SalesInvoiceOperations {
+public class SalesInvoiceTemplate extends AbstractCrunchOperations implements SalesInvoiceOperations {
 
-    private boolean authorised;
     private RestTemplate restTemplate;
 
-    public SalesInvoiceTemplate(RestTemplate restTemplate, boolean authorised) {
+    private CrunchOAuthUrls crunchOAuthUrls;
+
+    public SalesInvoiceTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
+        super(authorised);
         this.restTemplate = restTemplate;
-        this.authorised = authorised;
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
     @Override

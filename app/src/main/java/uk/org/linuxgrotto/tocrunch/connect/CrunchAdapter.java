@@ -15,14 +15,16 @@ import uk.org.linuxgrotto.tocrunch.api.model.Director;
  * Created by jgroth on 04/04/16.
  */
 public class CrunchAdapter implements ApiAdapter<Crunch> {
+
     private static final String TAG = CrunchAdapter.class.getSimpleName();
+
     @Override
     public boolean test(Crunch crunch) {
         try {
-            crunch.clientOperations().getClients(0, 1);
+            crunch.currentUserOperations().getCurrentUser();
             return true;
         } catch (ApiException e) {
-            Log.e(TAG, "Could not access Crunch api getClients()");
+            Log.e(TAG, "Could not access Crunch api getCurrentUser()");
             return false;
         }
     }

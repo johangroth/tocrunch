@@ -6,19 +6,21 @@ import uk.org.linuxgrotto.tocrunch.api.AccountOperations;
 import uk.org.linuxgrotto.tocrunch.api.AccountType;
 import uk.org.linuxgrotto.tocrunch.api.model.Account;
 import uk.org.linuxgrotto.tocrunch.api.model.Accounts;
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
 /**
  * Created by jgroth on 04/04/16.
  */
-public class AccountTemplate implements AccountOperations {
+public class AccountTemplate extends AbstractCrunchOperations implements AccountOperations {
 
 
-    private boolean authorised;
     private RestTemplate restTemplate;
+    private CrunchOAuthUrls crunchOAuthUrls;
 
-    public AccountTemplate(RestTemplate restTemplate, boolean authorised) {
+    public AccountTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
+        super(authorised);
         this.restTemplate = restTemplate;
-        this.authorised = authorised;
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
     @Override

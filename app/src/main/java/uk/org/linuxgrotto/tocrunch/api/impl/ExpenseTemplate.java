@@ -7,18 +7,21 @@ import java.util.Date;
 import uk.org.linuxgrotto.tocrunch.api.ExpenseOperations;
 import uk.org.linuxgrotto.tocrunch.api.model.Expense;
 import uk.org.linuxgrotto.tocrunch.api.model.Expenses;
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
 /**
  * Created by jgroth on 04/04/16.
  */
-public class ExpenseTemplate implements ExpenseOperations {
+public class ExpenseTemplate extends AbstractCrunchOperations implements ExpenseOperations {
 
-    private boolean authorised;
     private RestTemplate restTemplate;
 
-    public ExpenseTemplate(RestTemplate restTemplate, boolean authorised) {
+    private CrunchOAuthUrls crunchOAuthUrls;
+
+    public ExpenseTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
+        super(authorised);
         this.restTemplate = restTemplate;
-        this.authorised = authorised;
+        this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
 
