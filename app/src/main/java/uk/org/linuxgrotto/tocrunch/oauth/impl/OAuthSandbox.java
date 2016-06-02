@@ -1,4 +1,7 @@
-package uk.org.linuxgrotto.tocrunch.oauth;
+package uk.org.linuxgrotto.tocrunch.oauth.impl;
+
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
+import uk.org.linuxgrotto.tocrunch.oauth.Globals;
 
 /**
  * Created by jgroth on 22/03/16.

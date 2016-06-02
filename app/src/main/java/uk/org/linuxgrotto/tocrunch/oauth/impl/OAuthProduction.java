@@ -1,14 +1,18 @@
-package uk.org.linuxgrotto.tocrunch.oauth;
+package uk.org.linuxgrotto.tocrunch.oauth.impl;
+
+import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
+import uk.org.linuxgrotto.tocrunch.oauth.Globals;
 
 /**
  * Created by jgroth on 02/06/16.
  */
-public class OAuthPrelaunch extends Globals implements CrunchOAuthUrls {
-    private static final String CONSUMER_KEY = "to_crunch";
-    private static final String SHARED_SECRET = "c376e7dc-b040-4bdf-82ed-28a32d123f41";
+public class OAuthProduction extends Globals implements CrunchOAuthUrls {
 
-    private static final String OAUTH_BASE_URL = "https://prelaunch.crunch.co.uk";
-    private static final String API_BASE_URL = "https://prelaunch-api.crunch.co.uk/rest/v2";
+    private static final String CONSUMER_KEY = "to_crunch";
+    private static final String SHARED_SECRET ="c376e7dc-b040-4bdf-82ed-28a32d123f41";
+
+    private static final String OAUTH_BASE_URL = "https://app.crunch.co.uk";
+    private static final String API_BASE_URL = "https://api.crunch.co.uk/rest/v2";
 
     @Override
     public String getApiBaseUrl() {

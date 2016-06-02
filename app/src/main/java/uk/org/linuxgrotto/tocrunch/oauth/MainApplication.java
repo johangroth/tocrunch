@@ -11,6 +11,7 @@ import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 
 import uk.org.linuxgrotto.tocrunch.api.Crunch;
 import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
+import uk.org.linuxgrotto.tocrunch.oauth.impl.OAuthSandbox;
 
 /**
  * Created by jgroth on 04/04/16.
