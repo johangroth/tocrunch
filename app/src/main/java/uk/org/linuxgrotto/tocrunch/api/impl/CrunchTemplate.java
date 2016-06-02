@@ -45,8 +45,8 @@ public class CrunchTemplate extends AbstractOAuth1ApiBinding implements Crunch {
 
     public CrunchTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret, CrunchOAuthUrls crunchOAuthUrls) {
         super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
-        init();
         this.crunchOAuthUrls = crunchOAuthUrls;
+        init();
     }
 
     @Override

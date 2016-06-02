@@ -1,5 +1,7 @@
 package uk.org.linuxgrotto.tocrunch.api;
 
+import java.util.List;
+
 import uk.org.linuxgrotto.tocrunch.api.model.Account;
 import uk.org.linuxgrotto.tocrunch.api.model.Accounts;
 
@@ -9,5 +11,5 @@ import uk.org.linuxgrotto.tocrunch.api.model.Accounts;
 public interface AccountOperations {
     Accounts getAccounts();
 
-    Account getAccount(AccountType accountType);
+    List<Account> getAccount(AccountType accountType);
 }

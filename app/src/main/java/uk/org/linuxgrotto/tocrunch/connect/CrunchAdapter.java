@@ -32,13 +32,13 @@ public class CrunchAdapter implements ApiAdapter<Crunch> {
     @Override
     public void setConnectionValues(Crunch crunch, ConnectionValues values) {
         Director director = crunch.currentUserOperations().getCurrentUser();
-        values.setDisplayName(director.getValue());
+        values.setDisplayName(director.getDirectorName());
     }
 
     @Override
     public UserProfile fetchUserProfile(Crunch crunch) {
         Director director = crunch.currentUserOperations().getCurrentUser();
-        return new UserProfileBuilder().setEmail(director.getDirectorEmail()).setName(director.getValue()).build();
+        return new UserProfileBuilder().setEmail(director.getDirectorEmail()).setName(director.getDirectorName()).build();
     }
 
     @Override

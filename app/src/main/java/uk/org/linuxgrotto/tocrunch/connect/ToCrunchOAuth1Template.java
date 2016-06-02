@@ -132,7 +132,7 @@ public class ToCrunchOAuth1Template implements OAuth1Operations {
     /**
      * Creates an {@link OAuthToken} given the response from the request token or access token exchange with the provider.
      * May be overridden to create a custom {@link OAuthToken}.
-     * @param tokenValue the token value received from the provider.
+     * @param tokenValue the token paymentMethodName received from the provider.
      * @param tokenSecret the token secret received from the provider.
      * @param response all parameters from the response received in the request/access token exchange.
      * @return an {@link OAuthToken}
