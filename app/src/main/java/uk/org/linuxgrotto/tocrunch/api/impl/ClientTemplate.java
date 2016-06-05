@@ -1,5 +1,10 @@
 package uk.org.linuxgrotto.tocrunch.api.impl;
 
+import android.util.Log;
+
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import uk.org.linuxgrotto.tocrunch.api.ClientOperations;
@@ -11,6 +16,10 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  * Created by jgroth on 04/04/16.
  */
 public class ClientTemplate extends AbstractCrunchOperations implements ClientOperations {
+
+    private static final String TAG = ClientTemplate.class.getSimpleName();
+
+    private static final String CLIENTS_URL = "/clients";
 
     private RestTemplate restTemplate;
 
@@ -24,26 +33,44 @@ public class ClientTemplate extends AbstractCrunchOperations implements ClientOp
 
     @Override
     public Clients getClients(int firstResult, Integer resultsPerPage) {
-        return null;
+        requireUserAuthorisation();
+        MultiValueMap<String, String> urlParams = new LinkedMultiValueMap<>();
+        urlParams.add("firstResult", String.valueOf(firstResult));
+        urlParams.add("resultsPerPage", String.valueOf(resultsPerPage));
+
+        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL, urlParams), Clients.class);
     }
 
     @Override
     public Client addClient(Client client) {
-        return null;
+        requireUserAuthorisation();
+
+        return restTemplate.postForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL), client, Client.class);
     }
 
     @Override
     public Client getClient(Long id) {
-        return null;
+        requireUserAuthorisation();
+
+        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id), Client.class);
     }
 
     @Override
     public Client updateClient(Long id, Client client) {
-        return null;
+        requireUserAuthorisation();
+        restTemplate.put(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id), client);
+        return client;
     }
 
     @Override
     public boolean deleteClient(Long id) {
-        return false;
+        requireUserAuthorisation();
+        try {
+            restTemplate.delete(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id));
+        } catch (RestClientException e) {
+            Log.e(TAG, "Failed to delete client with id " + id);
+            return false;
+        }
+        return true;
     }
 }
