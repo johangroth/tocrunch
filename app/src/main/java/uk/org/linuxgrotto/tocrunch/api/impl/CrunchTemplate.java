@@ -112,7 +112,7 @@ public class CrunchTemplate extends AbstractOAuth1ApiBinding implements Crunch {
 
         expenseOperations = new ExpenseTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
-        expenseTypeOperations = new ExpenseTypeTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
+        expenseTypeOperations = new ExpenseTypesTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 
         paymentMethodOperations = new PaymentMethodTemplate(getRestTemplate(), isAuthorized(), crunchOAuthUrls);
 

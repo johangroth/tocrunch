@@ -35,7 +35,7 @@ public class AccountTemplate extends AbstractCrunchOperations implements Account
     @Override
     public List<Account> getAccount(AccountType accountType) {
         requireUserAuthorisation();
-        Accounts accounts =  restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + ACCOUNTS_URL + "/" + accountType.name(), Accounts.class);
+        Accounts accounts =  restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + ACCOUNTS_URL + "/" + accountType.name().toLowerCase(), Accounts.class);
         switch (accountType) {
             case BANK_ACCOUNT:
                 return accounts.getBankAccounts();
