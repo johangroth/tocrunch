@@ -38,6 +38,6 @@ public class AbstractCrunchOperations {
         return URIBuilder.fromUri(path).queryParams(parameters).build();
     }
 
-    private static final LinkedMultiValueMap<String, String> EMPTY_PARAMETERS = new LinkedMultiValueMap<String, String>();
+    private static final LinkedMultiValueMap<String, String> EMPTY_PARAMETERS = new LinkedMultiValueMap<>();
 
 }

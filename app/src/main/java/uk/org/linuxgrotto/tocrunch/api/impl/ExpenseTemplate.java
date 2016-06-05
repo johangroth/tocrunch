@@ -24,7 +24,6 @@ public class ExpenseTemplate extends AbstractCrunchOperations implements Expense
         this.crunchOAuthUrls = crunchOAuthUrls;
     }
 
-
     @Override
     public Expenses getExpenses(Integer firstResult, Integer resultsPerPage, Long supplierId, Date date, Date dateFrom, Date dateTo) {
         return null;
