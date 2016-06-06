@@ -2,7 +2,6 @@ package uk.org.linuxgrotto.tocrunch.api;
 
 import java.util.Date;
 
-import uk.org.linuxgrotto.tocrunch.api.model.Director;
 import uk.org.linuxgrotto.tocrunch.api.model.Directors;
 
 /**
@@ -11,5 +10,5 @@ import uk.org.linuxgrotto.tocrunch.api.model.Directors;
 public interface DirectorOperations {
     Directors getDirectors();
 
-    Director getDirector(Date date);
+    Directors getDirector(Date date);
 }

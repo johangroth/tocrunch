@@ -1,10 +1,7 @@
 package uk.org.linuxgrotto.tocrunch.api.impl;
 
-import android.util.Log;
-
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import uk.org.linuxgrotto.tocrunch.api.ClientOperations;
@@ -51,7 +48,6 @@ public class ClientTemplate extends AbstractCrunchOperations implements ClientOp
     @Override
     public Client getClient(Long id) {
         requireUserAuthorisation();
-
         return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id), Client.class);
     }
 
@@ -65,12 +61,7 @@ public class ClientTemplate extends AbstractCrunchOperations implements ClientOp
     @Override
     public boolean deleteClient(Long id) {
         requireUserAuthorisation();
-        try {
-            restTemplate.delete(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id));
-        } catch (RestClientException e) {
-            Log.e(TAG, "Failed to delete client with id " + id);
-            return false;
-        }
+        restTemplate.delete(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id));
         return true;
     }
 }
