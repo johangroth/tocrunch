@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import uk.org.linuxgrotto.tocrunch.api.DirectorOperations;
-import uk.org.linuxgrotto.tocrunch.api.model.Director;
 import uk.org.linuxgrotto.tocrunch.api.model.Directors;
 import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 
@@ -33,9 +32,9 @@ public class DirectorTemplate extends AbstractCrunchOperations implements Direct
     }
 
     @Override
-    public Director getDirector(Date date) {
+    public Directors getDirector(Date date) {
         requireUserAuthorisation();
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        return restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + DIRECTORS_URL + "/" + format.format(date), Director.class);
+        return restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + DIRECTORS_URL + "/" + format.format(date), Directors.class);
     }
 }
