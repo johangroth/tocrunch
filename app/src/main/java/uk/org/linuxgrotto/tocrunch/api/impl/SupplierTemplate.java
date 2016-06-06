@@ -1,6 +1,9 @@
 package uk.org.linuxgrotto.tocrunch.api.impl;
 
+import org.springframework.social.support.URIBuilder;
 import org.springframework.web.client.RestTemplate;
+
+import java.net.URI;
 
 import uk.org.linuxgrotto.tocrunch.api.SupplierOperations;
 import uk.org.linuxgrotto.tocrunch.api.model.Supplier;
@@ -12,6 +15,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  */
 public class SupplierTemplate extends AbstractCrunchOperations implements SupplierOperations {
 
+    private static final String SUPPLIERS_URL = "/suppliers";
     private RestTemplate restTemplate;
 
     private CrunchOAuthUrls crunchOAuthUrls;
@@ -24,7 +28,12 @@ public class SupplierTemplate extends AbstractCrunchOperations implements Suppli
 
     @Override
     public Suppliers getSuppliers(Integer firstResult, Integer resultsPerPage) {
-        return null;
+        requireUserAuthorisation();
+        URI url = URIBuilder.fromUri(crunchOAuthUrls.getApiBaseUrl() + SUPPLIERS_URL)
+            .queryParam("firstResult", firstResult != null ? firstResult.toString() : "0")
+            .queryParam("resultsPerPage", resultsPerPage != null ? resultsPerPage.toString() : "0")
+            .build();
+        return restTemplate.getForObject(url, Suppliers.class);
     }
 
     @Override
@@ -34,16 +43,21 @@ public class SupplierTemplate extends AbstractCrunchOperations implements Suppli
 
     @Override
     public Supplier getSupplier(Long id) {
-        return null;
+        requireUserAuthorisation();
+        return restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + SUPPLIERS_URL + "/" + id, Supplier.class);
     }
 
     @Override
     public boolean deleteSupplier(Long id) {
-        return false;
+        requireUserAuthorisation();
+        restTemplate.delete(crunchOAuthUrls.getApiBaseUrl() + SUPPLIERS_URL + "/" + id);
+        return true;
     }
 
     @Override
     public Supplier updateSupplier(Long id, Supplier supplier) {
-        return null;
+        requireUserAuthorisation();
+        restTemplate.put(crunchOAuthUrls.getApiBaseUrl() + SUPPLIERS_URL + "/" + id, supplier, Supplier.class);
+        return supplier;
     }
 }

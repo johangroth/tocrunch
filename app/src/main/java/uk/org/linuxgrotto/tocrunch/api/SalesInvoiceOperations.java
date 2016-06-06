@@ -1,21 +1,24 @@
 package uk.org.linuxgrotto.tocrunch.api;
 
+import java.util.Date;
+
 import uk.org.linuxgrotto.tocrunch.api.model.SalesInvoice;
 import uk.org.linuxgrotto.tocrunch.api.model.SalesInvoices;
+import uk.org.linuxgrotto.tocrunch.api.model.SalesinvoiceDocument;
 
 /**
  * Created by jgroth on 04/04/16.
  */
 public interface SalesInvoiceOperations {
 
-    SalesInvoices getSalesInvoices(int firstResult,
+    SalesInvoices getSalesInvoices(Integer firstResult,
                                    Integer resultsPerPage,
-                                   String state,
-                                   String clientId,
+                                   Long clientId,
                                    String clientRef,
-                                   String dueDate,
-                                   String dueDateFrom,
-                                   String dueDateTo);
+                                   Date dueDate,
+                                   Date dueDateFrom,
+                                   Date dueDateTo,
+                                   String... states);
 
     SalesInvoice addSalesInvoice(SalesInvoice salesInvoice);
 
@@ -23,7 +26,7 @@ public interface SalesInvoiceOperations {
 
     SalesInvoice updateSalesInvoice(Long id, SalesInvoice salesInvoice);
 
-    SalesInvoice getSalesInvoiceDocument(Long id);
+    SalesinvoiceDocument getSalesInvoiceDocument(Long id);
 
     boolean deleteSalesInvoice(Long salesInvoiceId);
 
