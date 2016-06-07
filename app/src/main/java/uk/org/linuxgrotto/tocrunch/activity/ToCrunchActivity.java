@@ -24,7 +24,7 @@ public class ToCrunchActivity extends AbstractAsyncActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crunch);
+        setContentView(R.layout.activity_tocrunch);
         connectionRepository = getApplicationContext().getConnectionRepository();
         connectionFactory = getApplicationContext().getCrunchConnectionFactory();
     }
