@@ -50,7 +50,7 @@ public class ToCrunchActivity extends AbstractAsyncActivity {
     private void showConnectOptions() {
         String[] options = {"Connect"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
-        ListView listView = (ListView) this.findViewById(R.id.crunch_activity_options_list);
+        ListView listView = (ListView) this.findViewById(R.id.tocrunch_activity_options_list);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -70,7 +70,7 @@ public class ToCrunchActivity extends AbstractAsyncActivity {
         String[] options = {"Logout", "Accounts", "Expense types", "Payment methods in", "Payment methods out",
         "Current User"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
-        ListView listView = (ListView) this.findViewById(R.id.crunch_activity_options_list);
+        ListView listView = (ListView) this.findViewById(R.id.tocrunch_activity_options_list);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){

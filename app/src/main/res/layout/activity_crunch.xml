@@ -10,7 +10,7 @@
   tools:context=".activity.ToCrunchActivity">
 
     <ListView
-      android:id="@+id/crunch_activity_options_list"
+      android:id="@+id/tocrunch_activity_options_list"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
