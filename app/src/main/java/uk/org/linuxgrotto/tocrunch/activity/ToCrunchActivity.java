@@ -12,6 +12,7 @@ import org.springframework.social.connect.ConnectionRepository;
 import uk.org.linuxgrotto.tocrunch.R;
 import uk.org.linuxgrotto.tocrunch.api.Crunch;
 import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
+import uk.org.linuxgrotto.tocrunch.oauth.MainApplication;
 
 public class ToCrunchActivity extends AbstractAsyncActivity {
 
@@ -72,6 +73,7 @@ public class ToCrunchActivity extends AbstractAsyncActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
         ListView listView = (ListView) this.findViewById(R.id.tocrunch_activity_options_list);
         listView.setAdapter(arrayAdapter);
+        MainApplication.crunch = connectionRepository.findPrimaryConnection(Crunch.class).getApi();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override

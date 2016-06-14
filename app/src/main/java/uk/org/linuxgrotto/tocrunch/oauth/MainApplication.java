@@ -43,8 +43,6 @@ public class MainApplication extends Application {
         repositoryHelper = new SQLiteConnectionRepositoryHelper(this);
         connectionRepository = new SQLiteConnectionRepository(repositoryHelper,
                 connectionFactoryRegistry, AndroidEncryptors.text("password", "5c0744940b5c369b"));
-
-        crunch = connectionRepository.findPrimaryConnection(Crunch.class).getApi();
     }
 
     // ***************************************

@@ -53,7 +53,6 @@ public class ToCrunchWebOAuthActivity extends AbstractWebViewActivity {
             String oauthVerifier = uri.getQueryParameter("oauth_verifier");
 
             if (oauthVerifier != null) {
-                getWebView().clearView();
                 new CrunchPostConnectTask().execute(oauthVerifier);
             }
         } else {
@@ -80,7 +79,6 @@ public class ToCrunchWebOAuthActivity extends AbstractWebViewActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(authUrl));
         intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         startActivity(intent);
-        finish();
     }
 
     private void displayCrunchOptions() {
