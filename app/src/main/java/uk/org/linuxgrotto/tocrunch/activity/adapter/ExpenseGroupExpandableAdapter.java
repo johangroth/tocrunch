@@ -4,14 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.RotateAnimation;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter;
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder;
-import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder;
 
 import java.util.List;
 
@@ -47,7 +44,7 @@ public class ExpenseGroupExpandableAdapter extends ExpandableRecyclerAdapter<Exp
     @Override
     public void onBindParentViewHolder(ExpenseGroupsParentViewHolder parentViewHolder, int position, ParentListItem parentListItem) {
         ExpenseGroup expenseGroup = (ExpenseGroup) parentListItem;
-        parentViewHolder.expenseGroupTitleTextView.setText(expenseGroup.getDisplayName());
+        parentViewHolder.titleTextView.setText(expenseGroup.getDisplayName());
     }
 
     @Override
@@ -56,49 +53,12 @@ public class ExpenseGroupExpandableAdapter extends ExpandableRecyclerAdapter<Exp
         childViewHolder.expenseTypeText.setText(expenseType.getDisplayName());
     }
 
-    public class ExpenseGroupsParentViewHolder extends ParentViewHolder {
-        private static final float INITIAL_POSITION = 0.0f;
-        private static final float ROTATED_POSITION = 180f;
-
-        public TextView expenseGroupTitleTextView;
-        public ImageView parentDropDownArrow;
+    public class ExpenseGroupsParentViewHolder extends ToCrunchParentViewHolder {
 
         public ExpenseGroupsParentViewHolder(View itemView) {
             super(itemView);
-            expenseGroupTitleTextView = (TextView) itemView.findViewById(R.id.parent_list_item_text_view);
-            parentDropDownArrow = (ImageView) itemView.findViewById(R.id.parent_list_item_expand_arrow);
         }
 
-        @Override
-        public void setExpanded(boolean expanded) {
-            super.setExpanded(expanded);
-            if (expanded) {
-                parentDropDownArrow.setRotation(ROTATED_POSITION);
-            } else {
-                parentDropDownArrow.setRotation(INITIAL_POSITION);
-            }
-        }
-
-        @Override
-        public void onExpansionToggled(boolean expanded) {
-            super.onExpansionToggled(expanded);
-            RotateAnimation rotateAnimation;
-            if (expanded) { // rotate clockwise
-                rotateAnimation = new RotateAnimation(ROTATED_POSITION,
-                    INITIAL_POSITION,
-                    RotateAnimation.RELATIVE_TO_SELF, 0.5f,
-                    RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-            } else { // rotate counterclockwise
-                rotateAnimation = new RotateAnimation(-1 * ROTATED_POSITION,
-                    INITIAL_POSITION,
-                    RotateAnimation.RELATIVE_TO_SELF, 0.5f,
-                    RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-            }
-
-            rotateAnimation.setDuration(200);
-            rotateAnimation.setFillAfter(true);
-            parentDropDownArrow.startAnimation(rotateAnimation);
-        }
     }
 
     public class ExpenseTypesChildViewHolder extends ChildViewHolder {
