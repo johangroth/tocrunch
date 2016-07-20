@@ -14,7 +14,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  */
 public class ClientPaymentTemplate extends AbstractCrunchOperations implements ClientPaymentOperations {
 
-    private static final String CLIENT_PAYMENTS_URL = "/client_payments";
+    private static String CLIENT_PAYMENTS_URL;
 
     private RestTemplate restTemplate;
 
@@ -24,6 +24,7 @@ public class ClientPaymentTemplate extends AbstractCrunchOperations implements C
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        CLIENT_PAYMENTS_URL = crunchOAuthUrls.getApiBaseUrl() + "/client_payments";
     }
 
     @Override
@@ -33,25 +34,25 @@ public class ClientPaymentTemplate extends AbstractCrunchOperations implements C
         urlParams.add("firstResult", String.valueOf(firstResult));
         urlParams.add("resultsPerPage", String.valueOf(resultsPerPage));
 
-        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENT_PAYMENTS_URL, urlParams), ClientPayments.class);
+        return restTemplate.getForObject(buildUri(CLIENT_PAYMENTS_URL, urlParams), ClientPayments.class);
     }
 
     @Override
     public ClientPayment addClientPayment(ClientPayment clientPayment) {
         requireUserAuthorisation();
-        return restTemplate.postForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENT_PAYMENTS_URL), clientPayment, ClientPayment.class);
+        return restTemplate.postForObject(buildUri(CLIENT_PAYMENTS_URL), clientPayment, ClientPayment.class);
     }
 
     @Override
     public ClientPayment getClientPayment(Long id) {
         requireUserAuthorisation();
-        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENT_PAYMENTS_URL + "/" + id.toString()), ClientPayment.class);
+        return restTemplate.getForObject(buildUri(CLIENT_PAYMENTS_URL + "/" + id.toString()), ClientPayment.class);
     }
 
     @Override
     public ClientPayment updateClientPayment(Long id, ClientPayment clientPayment) {
         requireUserAuthorisation();
-        restTemplate.put(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENT_PAYMENTS_URL + "/" + id.toString()), clientPayment);
+        restTemplate.put(buildUri(CLIENT_PAYMENTS_URL + "/" + id.toString()), clientPayment);
         return clientPayment;
     }
 }

@@ -15,7 +15,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  */
 public class AccountTemplate extends AbstractCrunchOperations implements AccountOperations {
 
-    private static final String ACCOUNTS_URL = "/accounts";
+    private static String ACCOUNTS_URL;
 
     private RestTemplate restTemplate;
     private CrunchOAuthUrls crunchOAuthUrls;
@@ -24,18 +24,19 @@ public class AccountTemplate extends AbstractCrunchOperations implements Account
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        ACCOUNTS_URL = this.crunchOAuthUrls.getApiBaseUrl() + "/accounts";
     }
 
     @Override
     public Accounts getAccounts() {
         requireUserAuthorisation();
-        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + ACCOUNTS_URL), Accounts.class);
+        return restTemplate.getForObject(buildUri(ACCOUNTS_URL), Accounts.class);
     }
 
     @Override
     public List<Account> getAccount(AccountType accountType) {
         requireUserAuthorisation();
-        Accounts accounts =  restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + ACCOUNTS_URL + "/" + accountType.name().toLowerCase(), Accounts.class);
+        Accounts accounts =  restTemplate.getForObject(ACCOUNTS_URL + "/" + accountType.name().toLowerCase(), Accounts.class);
         switch (accountType) {
             case BANK_ACCOUNT:
                 return accounts.getBankAccounts();

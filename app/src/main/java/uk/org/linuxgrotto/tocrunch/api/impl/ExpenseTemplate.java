@@ -16,7 +16,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  * Created by jgroth on 04/04/16.
  */
 public class ExpenseTemplate extends AbstractCrunchOperations implements ExpenseOperations {
-    private static final String EXPENSES_URL = "/expenses";
+    private static String EXPENSES_URL;
     private RestTemplate restTemplate;
 
     private CrunchOAuthUrls crunchOAuthUrls;
@@ -25,6 +25,7 @@ public class ExpenseTemplate extends AbstractCrunchOperations implements Expense
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        EXPENSES_URL = crunchOAuthUrls.getApiBaseUrl() + "/expenses";
     }
 
     @Override
@@ -32,7 +33,7 @@ public class ExpenseTemplate extends AbstractCrunchOperations implements Expense
         requireUserAuthorisation();
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
-        URI url = URIBuilder.fromUri(crunchOAuthUrls.getApiBaseUrl() + EXPENSES_URL)
+        URI url = URIBuilder.fromUri(EXPENSES_URL)
             .queryParam("firstResult", firstResult.toString())
             .queryParam("resultsPerPage", resultsPerPage.toString())
             .queryParam("supplierId", supplierId.toString())
@@ -45,19 +46,19 @@ public class ExpenseTemplate extends AbstractCrunchOperations implements Expense
     @Override
     public Expense addExpense(Expense expense) {
         requireUserAuthorisation();
-        return restTemplate.postForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + EXPENSES_URL), expense, Expense.class);
+        return restTemplate.postForObject(buildUri(EXPENSES_URL), expense, Expense.class);
     }
 
     @Override
     public Expense getExpense(Long id) {
         requireUserAuthorisation();
-        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + EXPENSES_URL + "/" + id), Expense.class);
+        return restTemplate.getForObject(buildUri(EXPENSES_URL + "/" + id), Expense.class);
     }
 
     @Override
     public boolean deleteExpense(Long id) {
         requireUserAuthorisation();
-        restTemplate.delete(buildUri(crunchOAuthUrls.getApiBaseUrl() + EXPENSES_URL + "/" + id));
+        restTemplate.delete(buildUri(EXPENSES_URL + "/" + id));
         return true;
     }
 }

@@ -15,7 +15,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  */
 public class SupplierTemplate extends AbstractCrunchOperations implements SupplierOperations {
 
-    private static final String SUPPLIERS_URL = "/suppliers";
+    private static String SUPPLIERS_URL;
     private RestTemplate restTemplate;
 
     private CrunchOAuthUrls crunchOAuthUrls;
@@ -24,12 +24,13 @@ public class SupplierTemplate extends AbstractCrunchOperations implements Suppli
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        SUPPLIERS_URL = crunchOAuthUrls.getApiBaseUrl() + "/suppliers";
     }
 
     @Override
     public Suppliers getSuppliers(Integer firstResult, Integer resultsPerPage) {
         requireUserAuthorisation();
-        URI url = URIBuilder.fromUri(crunchOAuthUrls.getApiBaseUrl() + SUPPLIERS_URL)
+        URI url = URIBuilder.fromUri(SUPPLIERS_URL)
             .queryParam("firstResult", firstResult != null ? firstResult.toString() : "0")
             .queryParam("resultsPerPage", resultsPerPage != null ? resultsPerPage.toString() : "0")
             .build();
@@ -44,20 +45,20 @@ public class SupplierTemplate extends AbstractCrunchOperations implements Suppli
     @Override
     public Supplier getSupplier(Long id) {
         requireUserAuthorisation();
-        return restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + SUPPLIERS_URL + "/" + id, Supplier.class);
+        return restTemplate.getForObject(SUPPLIERS_URL + "/" + id, Supplier.class);
     }
 
     @Override
     public boolean deleteSupplier(Long id) {
         requireUserAuthorisation();
-        restTemplate.delete(crunchOAuthUrls.getApiBaseUrl() + SUPPLIERS_URL + "/" + id);
+        restTemplate.delete(SUPPLIERS_URL + "/" + id);
         return true;
     }
 
     @Override
     public Supplier updateSupplier(Long id, Supplier supplier) {
         requireUserAuthorisation();
-        restTemplate.put(crunchOAuthUrls.getApiBaseUrl() + SUPPLIERS_URL + "/" + id, supplier, Supplier.class);
+        restTemplate.put(SUPPLIERS_URL + "/" + id, supplier, Supplier.class);
         return supplier;
     }
 }

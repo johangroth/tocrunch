@@ -16,7 +16,7 @@ public class ClientTemplate extends AbstractCrunchOperations implements ClientOp
 
     private static final String TAG = ClientTemplate.class.getSimpleName();
 
-    private static final String CLIENTS_URL = "/clients";
+    private static String CLIENTS_URL;
 
     private RestTemplate restTemplate;
 
@@ -26,6 +26,7 @@ public class ClientTemplate extends AbstractCrunchOperations implements ClientOp
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        CLIENTS_URL = crunchOAuthUrls.getApiBaseUrl() + "/clients";
     }
 
     @Override
@@ -35,33 +36,33 @@ public class ClientTemplate extends AbstractCrunchOperations implements ClientOp
         urlParams.add("firstResult", String.valueOf(firstResult));
         urlParams.add("resultsPerPage", String.valueOf(resultsPerPage));
 
-        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL, urlParams), Clients.class);
+        return restTemplate.getForObject(buildUri(CLIENTS_URL, urlParams), Clients.class);
     }
 
     @Override
     public Client addClient(Client client) {
         requireUserAuthorisation();
 
-        return restTemplate.postForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL), client, Client.class);
+        return restTemplate.postForObject(buildUri(CLIENTS_URL), client, Client.class);
     }
 
     @Override
     public Client getClient(Long id) {
         requireUserAuthorisation();
-        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id), Client.class);
+        return restTemplate.getForObject(buildUri(CLIENTS_URL + "/" + id), Client.class);
     }
 
     @Override
     public Client updateClient(Long id, Client client) {
         requireUserAuthorisation();
-        restTemplate.put(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id), client);
+        restTemplate.put(buildUri(CLIENTS_URL + "/" + id), client);
         return client;
     }
 
     @Override
     public boolean deleteClient(Long id) {
         requireUserAuthorisation();
-        restTemplate.delete(buildUri(crunchOAuthUrls.getApiBaseUrl() + CLIENTS_URL + "/" + id));
+        restTemplate.delete(buildUri(CLIENTS_URL + "/" + id));
         return true;
     }
 }

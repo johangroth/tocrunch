@@ -11,7 +11,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  */
 public class ExpenseTypesTemplate extends AbstractCrunchOperations implements ExpenseTypeOperations {
 
-    private static final String EXPENSE_TYPES_URL = "/expense_types";
+    private static String EXPENSE_TYPES_URL;
 
     private RestTemplate restTemplate;
 
@@ -21,11 +21,12 @@ public class ExpenseTypesTemplate extends AbstractCrunchOperations implements Ex
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        EXPENSE_TYPES_URL = crunchOAuthUrls.getApiBaseUrl() + "/expense_types";
     }
 
     @Override
     public ExpenseTypes getExpenseTypes() {
         requireUserAuthorisation();
-        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + EXPENSE_TYPES_URL), ExpenseTypes.class);
+        return restTemplate.getForObject(buildUri(EXPENSE_TYPES_URL), ExpenseTypes.class);
     }
 }

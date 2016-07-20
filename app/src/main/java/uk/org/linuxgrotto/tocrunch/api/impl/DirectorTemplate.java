@@ -14,7 +14,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  */
 public class DirectorTemplate extends AbstractCrunchOperations implements DirectorOperations {
 
-    private static final String DIRECTORS_URL = "/directors";
+    private static String DIRECTORS_URL;
     private RestTemplate restTemplate;
 
     private CrunchOAuthUrls crunchOAuthUrls;
@@ -23,18 +23,19 @@ public class DirectorTemplate extends AbstractCrunchOperations implements Direct
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        DIRECTORS_URL = crunchOAuthUrls.getApiBaseUrl() + "/directors";
     }
 
     @Override
     public Directors getDirectors() {
         requireUserAuthorisation();
-        return restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + DIRECTORS_URL, Directors.class);
+        return restTemplate.getForObject(DIRECTORS_URL, Directors.class);
     }
 
     @Override
     public Directors getDirector(Date date) {
         requireUserAuthorisation();
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        return restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + DIRECTORS_URL + "/" + format.format(date), Directors.class);
+        return restTemplate.getForObject(DIRECTORS_URL + "/" + format.format(date), Directors.class);
     }
 }

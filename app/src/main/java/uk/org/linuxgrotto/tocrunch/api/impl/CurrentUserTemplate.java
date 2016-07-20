@@ -15,17 +15,18 @@ public class CurrentUserTemplate extends AbstractCrunchOperations implements Cur
 
     private CrunchOAuthUrls crunchOAuthUrls;
 
-    private static final String CURRENT_USER = "/current_user";
+    private static String CURRENT_USER;
 
     public CurrentUserTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        CURRENT_USER = crunchOAuthUrls.getApiBaseUrl() + "/current_user";
     }
 
     @Override
     public Director getCurrentUser() {
         requireUserAuthorisation();
-        return restTemplate.getForObject(buildUri(crunchOAuthUrls.getApiBaseUrl() + CURRENT_USER), Director.class);
+        return restTemplate.getForObject(buildUri(CURRENT_USER), Director.class);
     }
 }

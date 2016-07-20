@@ -18,7 +18,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
  */
 public class SalesInvoiceTemplate extends AbstractCrunchOperations implements SalesInvoiceOperations {
 
-    private static final String SALES_INVOICES_URL = "/sales_invoices";
+    private static String SALES_INVOICES_URL;
 
     private RestTemplate restTemplate;
 
@@ -28,6 +28,7 @@ public class SalesInvoiceTemplate extends AbstractCrunchOperations implements Sa
         super(authorised);
         this.restTemplate = restTemplate;
         this.crunchOAuthUrls = crunchOAuthUrls;
+        SALES_INVOICES_URL = crunchOAuthUrls.getApiBaseUrl() + "/sales_invoices";
     }
 
     @Override
@@ -46,7 +47,7 @@ public class SalesInvoiceTemplate extends AbstractCrunchOperations implements Sa
             invoiceStates = builder.toString();
         }
 
-        URI url = URIBuilder.fromUri(crunchOAuthUrls.getApiBaseUrl() + SALES_INVOICES_URL)
+        URI url = URIBuilder.fromUri(SALES_INVOICES_URL)
             .queryParam("firstResult", firstResult != null ? firstResult.toString() : "")
             .queryParam("resultsPerPage", resultsPerPage != null ? resultsPerPage.toString() : "")
             .queryParam("clientId", clientId != null ? clientId.toString() : "")
@@ -62,39 +63,39 @@ public class SalesInvoiceTemplate extends AbstractCrunchOperations implements Sa
     @Override
     public SalesInvoice addSalesInvoice(SalesInvoice salesInvoice) {
         requireUserAuthorisation();
-        return restTemplate.postForObject(crunchOAuthUrls.getApiBaseUrl() + SALES_INVOICES_URL, salesInvoice, SalesInvoice.class);
+        return restTemplate.postForObject(SALES_INVOICES_URL, salesInvoice, SalesInvoice.class);
     }
 
     @Override
     public SalesInvoice getSalesInvoice(Long id) {
         requireUserAuthorisation();
-        return restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + SALES_INVOICES_URL + "/" + id, SalesInvoice.class);
+        return restTemplate.getForObject(SALES_INVOICES_URL + "/" + id, SalesInvoice.class);
     }
 
     @Override
     public SalesInvoice updateSalesInvoice(Long id, SalesInvoice salesInvoice) {
         requireUserAuthorisation();
-        restTemplate.put(crunchOAuthUrls.getApiBaseUrl() + SALES_INVOICES_URL + "/" + id, salesInvoice, SalesInvoice.class);
+        restTemplate.put(SALES_INVOICES_URL + "/" + id, salesInvoice, SalesInvoice.class);
         return salesInvoice;
     }
 
     @Override
     public SalesinvoiceDocument getSalesInvoiceDocument(Long id) {
         requireUserAuthorisation();
-        return restTemplate.getForObject(crunchOAuthUrls.getApiBaseUrl() + SALES_INVOICES_URL + "/" + id + "/document", SalesinvoiceDocument.class);
+        return restTemplate.getForObject(SALES_INVOICES_URL + "/" + id + "/document", SalesinvoiceDocument.class);
     }
 
     @Override
     public boolean deleteSalesInvoice(Long salesInvoiceId) {
         requireUserAuthorisation();
-        restTemplate.delete(crunchOAuthUrls.getApiBaseUrl() + SALES_INVOICES_URL + "/" + salesInvoiceId);
+        restTemplate.delete(SALES_INVOICES_URL + "/" + salesInvoiceId);
         return true;
     }
 
     @Override
     public boolean issueOrEmailSalesInvoice(Long salesInvoiceId, String action) {
         requireUserAuthorisation();
-        restTemplate.put(crunchOAuthUrls.getApiBaseUrl() + SALES_INVOICES_URL + "/" + salesInvoiceId + "/" + action, SalesInvoice.class);
+        restTemplate.put(SALES_INVOICES_URL + "/" + salesInvoiceId + "/" + action, SalesInvoice.class);
         return true;
     }
 }
