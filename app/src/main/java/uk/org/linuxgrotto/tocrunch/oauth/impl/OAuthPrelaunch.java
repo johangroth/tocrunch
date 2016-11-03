@@ -7,6 +7,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.Globals;
  * Created by jgroth on 02/06/16.
  */
 public class OAuthPrelaunch extends Globals implements CrunchOAuthUrls {
+
     private static final String CONSUMER_KEY = "to_crunch";
     private static final String SHARED_SECRET = "c376e7dc-b040-4bdf-82ed-28a32d123f41";
 

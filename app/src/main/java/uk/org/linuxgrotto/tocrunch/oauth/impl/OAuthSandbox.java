@@ -15,6 +15,11 @@ public class OAuthSandbox extends Globals implements CrunchOAuthUrls {
     private static final String API_BASE_URL = "https://sandbox.api.crunch.co.uk/rest/v2";
 
     @Override
+    public String getApiBaseUrl() {
+        return API_BASE_URL;
+    }
+
+    @Override
     public String getRequestTokenEndpoint() {
         return OAUTH_BASE_URL + REQUEST_TOKEN;
     }
@@ -27,11 +32,6 @@ public class OAuthSandbox extends Globals implements CrunchOAuthUrls {
     @Override
     public String getAuthorisationEndpoint() {
         return OAUTH_BASE_URL + AUTHORIZE;
-    }
-
-    @Override
-    public String getApiBaseUrl() {
-        return API_BASE_URL;
     }
 
     @Override
