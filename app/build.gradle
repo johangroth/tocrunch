@@ -24,6 +24,7 @@ android {
         exclude 'META-INF/INDEX.LIST'
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/license.txt'
+        exclude 'META-INF/LICENSE'
         exclude 'META-INF/MANIFEST.MF'
         exclude 'META-INF/ASL2.0'
         exclude 'META-INF/maven/com.google.guava/guava/pom.properties'

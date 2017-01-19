@@ -11,7 +11,7 @@ import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 
 import uk.org.linuxgrotto.tocrunch.api.Crunch;
 import uk.org.linuxgrotto.tocrunch.connect.CrunchConnectionFactory;
-import uk.org.linuxgrotto.tocrunch.oauth.impl.OAuthSandbox;
+import uk.org.linuxgrotto.tocrunch.oauth.impl.OAuthWorkPc;
 
 /**
  * Created by jgroth on 04/04/16.
@@ -24,7 +24,7 @@ public class MainApplication extends Application {
 
     private ConnectionRepository connectionRepository;
 
-    private CrunchOAuthUrls oAuthUrls = new OAuthSandbox();
+    private CrunchOAuthUrls oAuthUrls = new OAuthWorkPc();
 
     public static Crunch crunch;
 

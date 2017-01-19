@@ -53,6 +53,7 @@ public class ToCrunchWebOAuthActivity extends AbstractWebViewActivity {
             String oauthVerifier = uri.getQueryParameter("oauth_verifier");
 
             if (oauthVerifier != null) {
+                getWebView().loadUrl("about:blank");
                 new CrunchPostConnectTask().execute(oauthVerifier);
             }
         } else {
@@ -73,12 +74,14 @@ public class ToCrunchWebOAuthActivity extends AbstractWebViewActivity {
         saveRequestToken(requestToken);
 
         // Generate the Crunch authorization URL to be used in the browser or web view
-        String authUrl = this.connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), OAuth1Parameters.NONE);
+        String authUrl = this.connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), OAuth1Parameters.NONE).trim();
 
         // display the crunch authorization screen
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(authUrl));
-        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        startActivity(intent);
+        getWebView().loadUrl(authUrl);
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(authUrl));
+//        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+//        startActivity(intent);
+
     }
 
     private void displayCrunchOptions() {
