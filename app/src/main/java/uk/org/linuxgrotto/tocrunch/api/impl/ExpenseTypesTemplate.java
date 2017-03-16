@@ -15,12 +15,9 @@ public class ExpenseTypesTemplate extends CrunchOperations implements ExpenseTyp
 
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     public ExpenseTypesTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         EXPENSE_TYPES_URL = crunchOAuthUrls.getApiBaseUrl() + "/expense_types";
     }
 

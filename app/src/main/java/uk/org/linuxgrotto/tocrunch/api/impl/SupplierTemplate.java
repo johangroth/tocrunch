@@ -18,12 +18,9 @@ public class SupplierTemplate extends CrunchOperations implements SupplierOperat
     private static String SUPPLIERS_URL;
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     public SupplierTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         SUPPLIERS_URL = crunchOAuthUrls.getApiBaseUrl() + "/suppliers";
     }
 

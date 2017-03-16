@@ -18,12 +18,9 @@ public class ClientPaymentTemplate extends CrunchOperations implements ClientPay
 
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     public ClientPaymentTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         CLIENT_PAYMENTS_URL = crunchOAuthUrls.getApiBaseUrl() + "/client_payments";
     }
 

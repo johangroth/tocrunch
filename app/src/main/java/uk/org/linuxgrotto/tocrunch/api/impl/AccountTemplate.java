@@ -18,13 +18,11 @@ public class AccountTemplate extends CrunchOperations implements AccountOperatio
     private static String ACCOUNTS_URL;
 
     private RestTemplate restTemplate;
-    private CrunchOAuthUrls crunchOAuthUrls;
 
     public AccountTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
-        ACCOUNTS_URL = this.crunchOAuthUrls.getApiBaseUrl() + "/accounts";
+        ACCOUNTS_URL = crunchOAuthUrls.getApiBaseUrl() + "/accounts";
     }
 
     @Override

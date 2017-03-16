@@ -22,12 +22,9 @@ public class SalesInvoiceTemplate extends CrunchOperations implements SalesInvoi
 
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     public SalesInvoiceTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         SALES_INVOICES_URL = crunchOAuthUrls.getApiBaseUrl() + "/sales_invoices";
     }
 

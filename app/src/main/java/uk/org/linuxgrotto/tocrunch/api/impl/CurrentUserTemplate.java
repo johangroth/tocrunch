@@ -13,14 +13,11 @@ public class CurrentUserTemplate extends CrunchOperations implements CurrentUser
 
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     private static String CURRENT_USER;
 
     public CurrentUserTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         CURRENT_USER = crunchOAuthUrls.getApiBaseUrl() + "/current_user";
     }
 

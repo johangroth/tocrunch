@@ -20,12 +20,9 @@ public class ClientTemplate extends CrunchOperations implements ClientOperations
 
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     public ClientTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         CLIENTS_URL = crunchOAuthUrls.getApiBaseUrl() + "/clients";
     }
 

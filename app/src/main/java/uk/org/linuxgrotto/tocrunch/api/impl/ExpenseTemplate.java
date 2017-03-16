@@ -19,12 +19,9 @@ public class ExpenseTemplate extends CrunchOperations implements ExpenseOperatio
     private static String EXPENSES_URL;
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     public ExpenseTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         EXPENSES_URL = crunchOAuthUrls.getApiBaseUrl() + "/expenses";
     }
 

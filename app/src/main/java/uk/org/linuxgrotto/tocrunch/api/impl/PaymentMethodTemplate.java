@@ -16,12 +16,9 @@ public class PaymentMethodTemplate extends CrunchOperations implements PaymentMe
 
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     public PaymentMethodTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         PAYMENT_METHODS_IN = crunchOAuthUrls.getApiBaseUrl() + "/payment_methods/in";
         PAYMENT_METHODS_OUT = crunchOAuthUrls.getApiBaseUrl() + "/payment_methods/out";
     }

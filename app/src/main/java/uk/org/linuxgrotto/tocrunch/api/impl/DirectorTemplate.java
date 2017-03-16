@@ -17,12 +17,9 @@ public class DirectorTemplate extends CrunchOperations implements DirectorOperat
     private static String DIRECTORS_URL;
     private RestTemplate restTemplate;
 
-    private CrunchOAuthUrls crunchOAuthUrls;
-
     public DirectorTemplate(RestTemplate restTemplate, boolean authorised, CrunchOAuthUrls crunchOAuthUrls) {
         super(authorised);
         this.restTemplate = restTemplate;
-        this.crunchOAuthUrls = crunchOAuthUrls;
         DIRECTORS_URL = crunchOAuthUrls.getApiBaseUrl() + "/directors";
     }
 
