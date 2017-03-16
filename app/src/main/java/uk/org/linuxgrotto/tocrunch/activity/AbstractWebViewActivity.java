@@ -60,7 +60,7 @@ public class AbstractWebViewActivity extends AppCompatActivity implements AsyncA
                         intent.setData(uri);
                         startActivity(intent);
                     } catch (ActivityNotFoundException e) {
-                        Log.e(TAG, "Could not load url "+ url);
+                        Log.e(TAG, "Could not load url " + url);
                     }
                 }
                 return super.shouldOverrideUrlLoading(view, url);
