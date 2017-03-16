@@ -15,7 +15,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class ExpenseTemplate extends AbstractCrunchOperations implements ExpenseOperations {
+public class ExpenseTemplate extends CrunchOperations implements ExpenseOperations {
     private static String EXPENSES_URL;
     private RestTemplate restTemplate;
 

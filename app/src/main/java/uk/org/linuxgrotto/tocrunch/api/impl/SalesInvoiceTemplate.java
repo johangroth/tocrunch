@@ -16,7 +16,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class SalesInvoiceTemplate extends AbstractCrunchOperations implements SalesInvoiceOperations {
+public class SalesInvoiceTemplate extends CrunchOperations implements SalesInvoiceOperations {
 
     private static String SALES_INVOICES_URL;
 

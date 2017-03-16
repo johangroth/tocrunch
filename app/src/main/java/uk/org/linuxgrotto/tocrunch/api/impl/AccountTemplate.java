@@ -13,7 +13,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class AccountTemplate extends AbstractCrunchOperations implements AccountOperations {
+public class AccountTemplate extends CrunchOperations implements AccountOperations {
 
     private static String ACCOUNTS_URL;
 

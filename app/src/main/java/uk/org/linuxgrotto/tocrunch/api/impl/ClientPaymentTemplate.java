@@ -12,7 +12,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class ClientPaymentTemplate extends AbstractCrunchOperations implements ClientPaymentOperations {
+public class ClientPaymentTemplate extends CrunchOperations implements ClientPaymentOperations {
 
     private static String CLIENT_PAYMENTS_URL;
 

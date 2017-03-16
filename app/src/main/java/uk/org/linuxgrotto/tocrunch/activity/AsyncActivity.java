@@ -7,12 +7,12 @@ import uk.org.linuxgrotto.tocrunch.oauth.MainApplication;
  */
 public interface AsyncActivity {
 
-    public MainApplication getApplicationContext();
+    MainApplication getApplicationContext();
 
-    public void showLoadingProgressDialog();
+    void showLoadingProgressDialog();
 
-    public void showProgressDialog(CharSequence message);
+    void showProgressDialog(CharSequence message);
 
-    public void dismissProgressDialog();
+    void dismissProgressDialog();
 
 }

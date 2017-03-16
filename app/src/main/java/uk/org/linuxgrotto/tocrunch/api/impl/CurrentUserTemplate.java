@@ -9,7 +9,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class CurrentUserTemplate extends AbstractCrunchOperations implements CurrentUserOperations {
+public class CurrentUserTemplate extends CrunchOperations implements CurrentUserOperations {
 
     private RestTemplate restTemplate;
 

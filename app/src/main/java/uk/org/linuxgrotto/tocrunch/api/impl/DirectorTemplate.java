@@ -12,7 +12,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class DirectorTemplate extends AbstractCrunchOperations implements DirectorOperations {
+public class DirectorTemplate extends CrunchOperations implements DirectorOperations {
 
     private static String DIRECTORS_URL;
     private RestTemplate restTemplate;

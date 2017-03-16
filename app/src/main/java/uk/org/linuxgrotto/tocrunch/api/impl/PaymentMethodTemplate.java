@@ -9,7 +9,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class PaymentMethodTemplate extends AbstractCrunchOperations implements PaymentMethodOperations {
+public class PaymentMethodTemplate extends CrunchOperations implements PaymentMethodOperations {
 
     private static String PAYMENT_METHODS_IN;
     private static String PAYMENT_METHODS_OUT;

@@ -9,7 +9,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class ExpenseTypesTemplate extends AbstractCrunchOperations implements ExpenseTypeOperations {
+public class ExpenseTypesTemplate extends CrunchOperations implements ExpenseTypeOperations {
 
     private static String EXPENSE_TYPES_URL;
 

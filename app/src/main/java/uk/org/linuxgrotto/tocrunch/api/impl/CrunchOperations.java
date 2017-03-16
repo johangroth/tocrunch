@@ -10,11 +10,11 @@ import java.net.URI;
 /**
  * Created by jgroth on 02/06/16.
  */
-public class AbstractCrunchOperations {
+public class CrunchOperations {
 
     private final boolean isUserAuthorized;
 
-    public AbstractCrunchOperations(boolean isUserAuthorized) {
+    public CrunchOperations(boolean isUserAuthorized) {
         this.isUserAuthorized = isUserAuthorized;
     }
 
@@ -29,7 +29,7 @@ public class AbstractCrunchOperations {
     }
 
     protected URI buildUri(String path, String parameterName, String parameterValue) {
-        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.set(parameterName, parameterValue);
         return buildUri(path, parameters);
     }

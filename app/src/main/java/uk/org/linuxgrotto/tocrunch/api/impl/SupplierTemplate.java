@@ -13,7 +13,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class SupplierTemplate extends AbstractCrunchOperations implements SupplierOperations {
+public class SupplierTemplate extends CrunchOperations implements SupplierOperations {
 
     private static String SUPPLIERS_URL;
     private RestTemplate restTemplate;

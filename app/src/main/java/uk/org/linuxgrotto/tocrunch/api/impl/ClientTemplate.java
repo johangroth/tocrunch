@@ -12,7 +12,7 @@ import uk.org.linuxgrotto.tocrunch.oauth.CrunchOAuthUrls;
 /**
  * Created by jgroth on 04/04/16.
  */
-public class ClientTemplate extends AbstractCrunchOperations implements ClientOperations {
+public class ClientTemplate extends CrunchOperations implements ClientOperations {
 
     private static final String TAG = ClientTemplate.class.getSimpleName();
 
