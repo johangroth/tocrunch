@@ -73,15 +73,11 @@ public class ToCrunchWebOAuthActivity extends AbstractWebViewActivity {
         // save for later use
         saveRequestToken(requestToken);
 
-        // Generate the Crunch authorization URL to be used in the browser or web view
+        // Generate the Crunch authorization URL to be used in the web view
         String authUrl = this.connectionFactory.getOAuthOperations().buildAuthorizeUrl(requestToken.getValue(), OAuth1Parameters.NONE).trim();
 
         // display the crunch authorization screen
         getWebView().loadUrl(authUrl);
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(authUrl));
-//        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-//        startActivity(intent);
-
     }
 
     private void displayCrunchOptions() {

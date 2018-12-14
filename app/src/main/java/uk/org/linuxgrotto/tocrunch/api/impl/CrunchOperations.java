@@ -20,7 +20,7 @@ public class CrunchOperations {
 
     protected void requireUserAuthorisation() {
         if (!isUserAuthorized) {
-            throw new MissingAuthorizationException();
+            throw new MissingAuthorizationException("Linux Grotto");
         }
     }
 
